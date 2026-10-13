@@ -3,161 +3,208 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#007C9C">
 <meta name="description" content="Cocobeach Avépozo, Chez Antoine : restaurant, chambres et camping au bord de l'océan à Baguida, Lomé.">
 <title>Cocobeach Avépozo – Chez Antoine | Restaurant, chambres et camping à Lomé</title>
-<meta name="color-scheme" content="light only">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
 <style>
-/* Concept : la plage d'Avépozo en grand. Accueil photo teinté turquoise, trois cartes photo (manger, dormir, camper),
-   puis le détail de chaque offre, la galerie, et un pied de page turquoise comme l'en-tête. */
+/* Concept : une page qui descend vers la mer. Sable chaud, turquoise, jaune soleil.
+   Les photos sont posées comme des tirages encadrés, les sections s'enchaînent par des vagues. */
 :root {
-  --bg: #F7FBFC;
+  --bg: #FBF6EA;          /* sable clair */
+  --tint: #E6F4F7;        /* écume */
   --surface: #FFFFFF;
   --fg: #14243B;
-  --muted: #4D6074;
-  --line: #D3E4E8;
-  --chip: #E1F0F3;
-  --brand: #007C9C;
-  --bar: #007C9C;
+  --muted: #56697C;
+  --line: #EADFC8;
+  --brand: #007C9C;       /* turquoise */
+  --brand-2: #00A2BE;
+  --brand-dark: #00566D;
   --sun: #FFC93C;
   --cta: #C8431B;
   --on-cta: #FFFFFF;
+  --shadow: 0 10px 28px rgba(0, 70, 90, .16);
   --font-display: 'Fredoka', 'Trebuchet MS', Arial, sans-serif;
   --font-body: 'Nunito', 'Segoe UI', Arial, sans-serif;
+  --font-script: 'Pacifico', 'Brush Script MT', cursive;
   color-scheme: light;
 }
-
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 110px; }
-body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; }
 p { margin: 0; }
 a { color: inherit; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
 .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
 :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
 .ico { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-.nw { white-space: nowrap; }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 22px; border-radius: 12px; font-weight: 800; font-size: 1rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-family: var(--font-body); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 22px; border-radius: 999px; font-weight: 800; font-size: 1rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-family: var(--font-body); transition: transform .15s, filter .15s; }
 .btn .ico { width: 22px; height: 22px; }
-.btn-cta { background: var(--cta); color: var(--on-cta); }
-.btn-cta:hover { filter: brightness(1.1); }
+.btn-cta { background: var(--cta); color: var(--on-cta); box-shadow: 0 6px 16px rgba(200, 67, 27, .35); }
+.btn-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
-/* En-tête turquoise */
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bar); color: #fff; box-shadow: 0 2px 12px rgba(0,30,45,.18); }
-.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; padding-block: 10px; }
-.logo { background: #fff; border-radius: 12px; padding: 5px 10px; display: flex; }
-.logo img { height: 40px; width: auto; display: block; }
-.nav { display: flex; gap: 4px; margin-left: auto; }
-.nav a { text-decoration: none; font-weight: 800; font-size: .98rem; padding: 8px 14px; border-radius: 10px; color: #fff; white-space: nowrap; }
-.nav a:hover { background: rgba(255,255,255,.18); }
-@media (max-width: 640px) {
-  .nav { width: 100%; margin-left: 0; overflow-x: auto; justify-content: space-between; }
-  .nav a { padding: 8px 10px; font-size: .92rem; }
+/* ===== En-tête ===== */
+.strip { background: var(--brand-dark); color: #fff; font-size: .86rem; font-weight: 700; }
+.strip .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2px 20px; padding-block: 7px; }
+.strip .it { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; }
+.strip .ico { width: 16px; height: 16px; color: var(--sun); }
+.strip a:hover { text-decoration: underline; }
+.strip .nw { white-space: nowrap; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: linear-gradient(120deg, var(--brand) 0%, var(--brand-2) 100%); color: #fff; box-shadow: 0 6px 18px rgba(0, 50, 70, .22); }
+.top .wrap { display: flex; align-items: center; gap: 16px; padding-block: 10px; }
+.logo { display: flex; background: #fff; border-radius: 16px; padding: 6px 12px; box-shadow: 0 4px 12px rgba(0, 40, 55, .22); border: 3px solid rgba(255,255,255,.55); }
+.logo img { height: 50px; width: auto; display: block; }
+.nav { display: flex; gap: 6px; margin-left: auto; }
+.nav a { text-decoration: none; font-weight: 800; font-size: 1rem; padding: 9px 18px; border-radius: 999px; color: #fff; white-space: nowrap; transition: background .15s, color .15s; }
+.nav a:hover { background: rgba(255,255,255,.2); }
+.nav a.on { background: #fff; color: var(--brand-dark); }
+.burger { display: none; margin-left: auto; width: 46px; height: 46px; border-radius: 14px; border: 2px solid rgba(255,255,255,.7); background: rgba(255,255,255,.12); color: #fff; cursor: pointer; align-items: center; justify-content: center; }
+.burger .ico { width: 26px; height: 26px; stroke-width: 2.4; }
+@media (max-width: 720px) {
+  .logo img { height: 42px; }
+  .burger { display: inline-flex; }
+  .nav { display: none; position: absolute; left: 16px; right: 16px; top: calc(100% + 8px); flex-direction: column; gap: 2px; padding: 10px; background: #fff; border-radius: 20px; box-shadow: 0 16px 36px rgba(0, 40, 55, .3); margin: 0; }
+  .nav.open { display: flex; }
+  .nav a { color: var(--fg); font-size: 1.1rem; padding: 13px 16px; border-radius: 14px; }
+  .nav a:hover { background: var(--tint); }
+  .nav a.on { background: var(--tint); color: var(--brand-dark); }
 }
 
-/* Accueil photo */
-.hero { position: relative; color: #fff; overflow: hidden; background: #05566D; }
-.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
-.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,95,120,.22) 0%, rgba(0,80,105,.34) 55%, rgba(0,55,75,.55) 100%); }
-.hero .wrap { position: relative; z-index: 2; padding-block: clamp(44px, 8vw, 84px) clamp(56px, 9vw, 92px); }
-.eyebrow { font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: .82rem; color: var(--sun); }
+/* ===== Accueil ===== */
+.hero { position: relative; color: #fff; overflow: hidden; background: var(--brand-dark); }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; max-width: none; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,95,120,.2) 0%, rgba(0,80,105,.3) 55%, rgba(0,55,75,.52) 100%); }
+.hero .wrap { position: relative; z-index: 2; padding-block: clamp(44px, 8vw, 84px) clamp(64px, 10vw, 100px); }
+.eyebrow { font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: .82rem; color: var(--sun); text-shadow: 0 1px 8px rgba(0,25,35,.5); }
 .hero h1 { font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 700; margin-top: 12px; text-shadow: 0 2px 18px rgba(0,25,35,.45); }
-.hero h1 span { color: var(--sun); display: block; font-size: .5em; font-weight: 600; margin-top: 10px; letter-spacing: .02em; }
-.hero .lead { font-size: 1.2rem; margin-top: 18px; max-width: 32em; text-shadow: 0 1px 10px rgba(0,25,35,.5); }
-.hero .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 28px; }
-.where { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; }
+.hero h1 span { color: var(--sun); display: block; font-family: var(--font-script); font-weight: 400; font-size: .62em; margin-top: 8px; }
+.hero .lead { font-size: 1.2rem; margin-top: 16px; max-width: 32em; text-shadow: 0 1px 10px rgba(0,25,35,.55); }
+.hero .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 26px; }
+.where { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; text-shadow: 0 1px 8px rgba(0,25,35,.6); }
 .where .ico { color: var(--sun); }
 .hero .wave { position: absolute; z-index: 2; left: 0; bottom: -1px; display: block; width: 100%; height: 48px; }
 
-/* Sections */
-section { padding-block: 56px; }
+/* ===== Sections ===== */
+section { padding-block: 56px; position: relative; }
 .sec-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; max-width: 40em; }
-.kicker { font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; color: var(--brand); }
-h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 700; }
+.kicker { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; color: var(--brand); }
+.kicker::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 4px rgba(255, 201, 60, .35); }
+h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 700; color: var(--brand-dark); }
 .sec-head p { color: var(--muted); }
 
-/* Cartes d'accueil avec photo en fond */
+/* Vagues entre sections */
+.wavy { --wf: var(--bg); }
+.wavy::before, footer::before { content: ""; position: absolute; left: 0; right: 0; top: -39px; height: 40px; background: var(--wf); pointer-events: none;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40V20Q150 0 300 20T600 20 900 20 1200 20V40Z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40V20Q150 0 300 20T600 20 900 20 1200 20V40Z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat; }
+
+/* Photos posées comme des tirages */
+.print { background: #fff; padding: 7px; border-radius: 20px; box-shadow: var(--shadow); }
+
+/* Cartes d'accueil */
 .offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.offer { position: relative; isolation: isolate; overflow: hidden; border-radius: 20px; min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 24px; text-decoration: none; color: #fff; background: #05566D; }
-.offer > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .5s ease; }
-.offer::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,40,55,0) 40%, rgba(0,40,55,.72) 100%); }
+.offer { position: relative; isolation: isolate; overflow: hidden; border-radius: 22px; min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 22px; text-decoration: none; color: #fff; background: var(--brand-dark); border: 5px solid #fff; box-shadow: var(--shadow); }
+.offer > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .5s ease; max-width: none; }
+.offer::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,40,55,0) 38%, rgba(0,40,55,.74) 100%); }
 .offer h3 { font-size: 1.7rem; display: flex; align-items: center; gap: 10px; }
 .offer h3 .ico { color: var(--sun); }
 .offer p { font-size: 1rem; text-shadow: 0 1px 8px rgba(0,25,35,.6); }
 .offer .more { font-weight: 800; color: var(--sun); margin-top: 4px; }
 .offer:hover > img { transform: scale(1.05); }
 
-/* Restauration */
-.dishes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 760px; }
-.dish { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; min-width: 0; }
-.dish img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; cursor: zoom-in; }
-.dish .body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 8px; }
-.dish h3 { font-size: 1.5rem; }
+/* ===== Restauration : plats qui défilent ===== */
+.slider { position: relative; }
+.track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 6px 4px 18px; margin-inline: -4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.track::-webkit-scrollbar { display: none; }
+.dish { flex: 0 0 min(86%, 560px); scroll-snap-align: start; min-width: 0; background: #fff; border-radius: 24px; padding: 8px; box-shadow: var(--shadow); }
+.dish img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 17px; cursor: zoom-in; }
+.dish .body { padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 6px; }
+.dish h3 { font-size: 1.5rem; color: var(--brand-dark); }
 .dish p { color: var(--muted); }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.tag { border: 2px solid var(--brand); color: var(--brand); font-weight: 800; font-size: .9rem; padding: 2px 12px; border-radius: 8px; }
-.note { margin-top: 22px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.tag { background: var(--tint); color: var(--brand-dark); font-weight: 800; font-size: .88rem; padding: 3px 14px; border-radius: 999px; }
+.slider-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; }
+.dots { display: flex; gap: 8px; }
+.dots button { width: 10px; height: 10px; border-radius: 50%; border: 0; padding: 0; background: #C9D9DE; cursor: pointer; transition: width .2s, background .2s; }
+.dots button.on { width: 28px; border-radius: 999px; background: var(--brand); }
+.arrow { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.arrow:hover:not(:disabled) { background: var(--brand); color: #fff; }
+.arrow:disabled { opacity: .35; cursor: default; }
+.arrow .ico { width: 22px; height: 22px; stroke-width: 2.6; }
+.hint { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 10px; }
+.note { margin-top: 18px; color: var(--muted); display: flex; gap: 10px; align-items: center; justify-content: center; text-align: center; }
 .note .ico { color: var(--brand); }
 
-/* Chambres */
-.rooms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; align-items: start; max-width: 860px; }
-.room { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; min-width: 0; display: flex; flex-direction: column; }
+/* ===== Chambres ===== */
+#chambres { background: var(--tint); }
+.rooms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: start; }
+.room { background: #fff; border-radius: 24px; padding: 8px; box-shadow: var(--shadow); min-width: 0; display: flex; flex-direction: column; }
 .room .pic { position: relative; }
-.room .pic > img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; cursor: zoom-in; }
-.price { position: absolute; right: 14px; bottom: 14px; background: var(--cta); color: var(--on-cta); font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; padding: 6px 16px; border-radius: 10px; border: 3px solid #fff; line-height: 1.2; white-space: nowrap; }
+.room .pic > img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 17px; cursor: zoom-in; }
+.price { position: absolute; right: 12px; bottom: 12px; background: var(--cta); color: var(--on-cta); font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; padding: 6px 16px; border-radius: 12px; border: 3px solid #fff; line-height: 1.2; white-space: nowrap; box-shadow: 0 6px 14px rgba(0,0,0,.2); }
 .price small { font-family: var(--font-body); font-weight: 800; font-size: .8rem; }
-.room .body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 14px; }
-.room h3 { font-size: 1.6rem; }
+.room .body { padding: 18px 16px 16px; display: flex; flex-direction: column; gap: 14px; }
+.room h3 { font-size: 1.6rem; color: var(--brand-dark); }
 .checks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px 16px; }
 .checks li { display: flex; gap: 10px; align-items: flex-start; }
 .checks .ico { color: var(--brand); width: 20px; height: 20px; margin-top: 4px; stroke-width: 2.6; }
-.minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 300px; }
-.minis img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; cursor: zoom-in; }
 .mini-cap { font-size: .85rem; color: var(--muted); font-weight: 800; margin-bottom: -6px; }
+.minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 300px; }
+.minis img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; cursor: zoom-in; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,60,80,.18); }
 .room .btn { align-self: flex-start; }
 
-/* Camping */
-.camp { background: var(--bar); color: #fff; }
+/* ===== Camping ===== */
+.camp { background: var(--brand); color: #fff; --wf: var(--brand); }
 .camp .kicker { color: var(--sun); }
-.camp .sec-head p { color: rgba(255,255,255,.9); }
+.camp h2 { color: #fff; }
+.camp .sec-head p { color: rgba(255,255,255,.92); }
 .camp .checks .ico { color: var(--sun); }
-.camp .grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 30px; align-items: center; }
+.camp .grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 32px; align-items: center; }
 @media (max-width: 820px) { .camp .grid { grid-template-columns: minmax(0, 1fr); } }
-.camp .pic img { display: block; width: 100%; max-width: 420px; justify-self: end; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 20px; cursor: zoom-in; }
+.camp .pic { max-width: 420px; justify-self: end; transform: rotate(1.6deg); }
+@media (max-width: 820px) { .camp .pic { justify-self: start; } }
+.camp .pic img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; cursor: zoom-in; }
 .camp .tarif { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 12px; margin: 20px 0; }
 .camp .tarif b { font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--sun); white-space: nowrap; }
 .camp .tarif span { font-weight: 800; }
 
-/* Galerie en colonnes, photos entières */
-.gallery { columns: 4 170px; column-gap: 10px; }
-.gallery figure { margin: 0 0 10px; break-inside: avoid; border-radius: 16px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); position: relative; }
-.gallery img { width: 100%; display: block; cursor: zoom-in; }
-.gallery figcaption { position: absolute; left: 10px; bottom: 10px; background: rgba(0,35,50,.78); color: #fff; font-weight: 800; font-size: .88rem; padding: 3px 10px; border-radius: 8px; }
+/* ===== Galerie : mosaïque ===== */
+.mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 560px) { .mosaic { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+.tile { position: relative; padding: 5px; border: 0; background: #fff; border-radius: 18px; box-shadow: var(--shadow); cursor: zoom-in; display: block; }
+.tile img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 13px; }
+.tile.more::after { content: attr(data-more); position: absolute; inset: 5px; border-radius: 13px; background: rgba(0, 70, 90, .72); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.1; }
+.tile.more:hover::after { background: rgba(0, 70, 90, .6); }
 
-/* Pied de page */
-footer { background: var(--bar); color: #fff; padding-block: 48px 24px; }
-footer .cols { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 32px; }
-@media (max-width: 820px) { footer .cols { grid-template-columns: minmax(0, 1fr); } }
-footer .brand { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-footer .brand b { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.15; }
-footer .brand span { color: rgba(255,255,255,.88); }
-footer h4 { margin: 0 0 14px; font-family: var(--font-body); font-weight: 800; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sun); }
-footer .list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-footer .list li { display: flex; gap: 12px; align-items: flex-start; min-width: 0; }
-footer .list .ico { color: var(--sun); margin-top: 3px; }
-footer .list small { display: block; color: rgba(255,255,255,.8); font-size: .85rem; line-height: 1.3; }
-footer .list strong { font-weight: 800; font-size: 1.05rem; }
-footer .lnk { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 3px; }
-footer .lnk:hover { text-decoration-color: var(--sun); }
-footer .mail { overflow-wrap: anywhere; user-select: all; }
-footer .num { white-space: nowrap; user-select: all; }
-footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.28); font-size: .88rem; color: rgba(255,255,255,.85); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; }
+/* ===== Pied de page ===== */
+footer { position: relative; background: var(--brand); color: #fff; padding-block: 34px 16px; margin-top: 56px; --wf: var(--brand); }
+.foot { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 22px 40px; align-items: center; max-width: 880px; }
+@media (max-width: 720px) { .foot { grid-template-columns: minmax(0, 1fr); } }
+.fname { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; line-height: 1.1; }
+.fsub { font-family: var(--font-script); color: var(--sun); font-size: 1.5rem; line-height: 1.3; }
+.where2 { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; }
+.where2 .ico { color: var(--sun); margin-top: 3px; }
+.where2 b { display: block; font-weight: 800; }
+.where2 small { display: block; color: rgba(255,255,255,.85); font-size: .88rem; }
+.pills { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.pill { display: flex; align-items: center; gap: 12px; text-decoration: none; padding: 10px 18px; border-radius: 999px; border: 2px solid rgba(255,255,255,.5); background: rgba(255,255,255,.12); font-weight: 800; min-width: 0; transition: background .15s; }
+.pill:hover { background: rgba(255,255,255,.24); }
+.pill .ico { width: 20px; height: 20px; }
+.pill span { white-space: nowrap; }
+.pill.mail span { white-space: normal; overflow-wrap: anywhere; font-size: .95rem; }
+.pill.wa { background: var(--sun); border-color: var(--sun); color: var(--brand-dark); }
+.pill.wa:hover { background: #FFD65E; }
+.legal { margin-top: 22px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.28); font-size: .84rem; color: rgba(255,255,255,.85); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 20px; }
 
-/* Visionneuse */
-[hidden] { display: none !important; }
-.lb { position: fixed; inset: 0; z-index: 50; background: rgba(5,18,28,.94); display: flex; align-items: center; justify-content: center; padding: 16px; }
+/* ===== Visionneuse ===== */
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(5,25,35,.94); display: flex; align-items: center; justify-content: center; padding: 16px; }
 .lb img { max-width: 100%; max-height: calc(100vh - 32px); border-radius: 10px; display: block; }
 .lb button { position: absolute; background: rgba(255,255,255,.16); color: #fff; border: 0; border-radius: 50%; width: 48px; height: 48px; font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .lb button:hover { background: rgba(255,255,255,.3); }
@@ -165,12 +212,10 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
 .lb .p { left: 12px; top: 50%; margin-top: -24px; }
 .lb .n { right: 12px; top: 50%; margin-top: -24px; }
 
-@media (prefers-reduced-motion: reduce) { .offer > img { transition: none; } html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { .offer > img, .btn, .track { transition: none; scroll-behavior: auto; } html { scroll-behavior: auto; } }
 </style>
-<style>body{margin:0}</style>
 </head>
 <body>
-
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -182,13 +227,25 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8.5 19Z"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
   </defs>
 </svg>
+
+<div class="strip">
+  <div class="wrap">
+    <span class="it"><svg class="ico"><use href="#i-pin"/></svg>Von, en face de la Pharmacie Avépozo</span>
+    <a class="it" href="https://wa.me/22890325373" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg>WhatsApp <span class="nw">+228 90 32 53 73</span></a>
+  </div>
+</div>
 
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#accueil" aria-label="Cocobeach Avépozo Chez Antoine, accueil"><img src="img/logo.png" alt="Logo Cocobeach Avépozo Chez Antoine"></a>
-    <nav class="nav" aria-label="Sections du site">
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><svg class="ico"><use href="#i-menu"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Sections du site">
       <a href="#restauration">Restauration</a>
       <a href="#chambres">Chambres</a>
       <a href="#camping">Camping</a>
@@ -206,13 +263,13 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
     <p class="lead">Restaurant, chambres et camping, les pieds dans le sable. Venez manger, dormir ou planter votre tente au bord de l'océan.</p>
     <div class="actions">
       <a class="btn btn-cta" href="https://wa.me/22890325373?text=Bonjour%20Cocobeach%20Chez%20Antoine%2C%20je%20souhaite%20r%C3%A9server." target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg>Réserver sur WhatsApp</a>
-      <span class="where"><svg class="ico"><use href="#i-pin"/></svg>Von, en face de la Pharmacie Avépozo</span>
+      <span class="where"><svg class="ico"><use href="#i-pin"/></svg>Avépozo, Baguida, Lomé</span>
     </div>
   </div>
-  <svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24Q150 0 300 24T600 24 900 24 1200 24V48H0Z" fill="var(--bg)"/></svg>
+  <svg class="wave" viewBox="0 0 1200 48" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24Q150 0 300 24T600 24 900 24 1200 24V48H0Z" fill="#FBF6EA"/></svg>
 </div>
 
-<section id="offres" style="padding-top: 40px">
+<section id="offres" style="padding-top: 36px">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">Ce que nous proposons</p>
@@ -242,36 +299,44 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
   </div>
 </section>
 
-<section id="restauration" style="padding-top: 8px">
+<section id="restauration" style="padding-top: 20px">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">Restauration</p>
       <h2>À table, face à l'océan</h2>
       <p>Chez Antoine, c'est le restaurant de la plage : poissons, grillades et plats copieux.</p>
     </div>
-    <div class="dishes">
-      <article class="dish">
-        <img src="img/fish.jpg" alt="Poisson grillé servi avec des frites et des crudités">
-        <div class="body">
-          <h3>Poisson grillé et frites</h3>
-          <p>Poisson entier grillé, frites dorées et crudités fraîches.</p>
-          <div class="tags"><span class="tag">Sur place</span><span class="tag">À emporter</span></div>
-        </div>
-      </article>
-      <article class="dish">
-        <img src="img/chick.jpg" alt="Poulet grillé servi avec de la pâte rouge et de la salade">
-        <div class="body">
-          <h3>Poulet grillé, pâte rouge</h3>
-          <p>Poulet grillé à point, pâte rouge et salade, un grand classique de chez nous.</p>
-          <div class="tags"><span class="tag">Sur place</span><span class="tag">À emporter</span></div>
-        </div>
-      </article>
+    <div class="slider" id="slider">
+      <div class="track" id="track" tabindex="0" aria-label="Nos plats, faites défiler vers la gauche">
+        <article class="dish">
+          <img data-lb src="img/fish.jpg" alt="Poisson grillé servi avec des frites et des crudités">
+          <div class="body">
+            <h3>Poisson grillé et frites</h3>
+            <p>Poisson entier grillé, frites dorées et crudités fraîches.</p>
+            <div class="tags"><span class="tag">Sur place</span><span class="tag">À emporter</span></div>
+          </div>
+        </article>
+        <article class="dish">
+          <img data-lb src="img/chick.jpg" alt="Poulet grillé servi avec de la pâte rouge et de la salade">
+          <div class="body">
+            <h3>Poulet grillé, pâte rouge</h3>
+            <p>Poulet grillé à point, pâte rouge et salade, un grand classique de chez nous.</p>
+            <div class="tags"><span class="tag">Sur place</span><span class="tag">À emporter</span></div>
+          </div>
+        </article>
+      </div>
+      <div class="slider-nav">
+        <button class="arrow" id="prev" type="button" aria-label="Plat précédent"><svg class="ico"><use href="#i-left"/></svg></button>
+        <div class="dots" id="dots"></div>
+        <button class="arrow" id="next" type="button" aria-label="Plat suivant"><svg class="ico"><use href="#i-right"/></svg></button>
+      </div>
+      <p class="hint">Faites glisser vers la gauche pour voir le plat suivant.</p>
     </div>
     <p class="note"><svg class="ico"><use href="#i-food"/></svg>La carte complète est à découvrir sur place.</p>
   </div>
 </section>
 
-<section id="chambres" style="padding-top: 8px">
+<section id="chambres" class="wavy" style="--wf: var(--tint)">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">Hébergement</p>
@@ -281,7 +346,7 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
     <div class="rooms">
       <article class="room">
         <div class="pic">
-          <img src="img/roomv.jpg" alt="Chambre ventilée avec lit en bois et ventilateur">
+          <img data-lb src="img/roomv.jpg" alt="Chambre ventilée avec lit en bois et ventilateur">
           <div class="price">17 000 FCFA <small>/ nuit</small></div>
         </div>
         <div class="body">
@@ -295,7 +360,7 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
       </article>
       <article class="room">
         <div class="pic">
-          <img src="img/roomc.jpg" alt="Chambre climatisée avec climatiseur mural et lit en bois">
+          <img data-lb src="img/roomc.jpg" alt="Chambre climatisée avec climatiseur mural et lit en bois">
           <div class="price">35 000 FCFA <small>/ nuit</small></div>
         </div>
         <div class="body">
@@ -309,9 +374,9 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
           </ul>
           <p class="mini-cap">La salle de bain</p>
           <div class="minis">
-            <img src="img/sh1.jpg" alt="Douche et WC de la chambre climatisée">
-            <img src="img/sh2.jpg" alt="Chauffe-eau électrique">
-            <img src="img/sh3.jpg" alt="Lavabo avec miroir">
+            <img data-lb src="img/sh1.jpg" alt="Douche et WC de la chambre climatisée">
+            <img data-lb src="img/sh2.jpg" alt="Chauffe-eau électrique">
+            <img data-lb src="img/sh3.jpg" alt="Lavabo avec miroir">
           </div>
           <a class="btn btn-cta" href="https://wa.me/22890325373?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20chambre%20climatis%C3%A9e.%20Dates%20%3A%20" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg>Réserver sur WhatsApp</a>
         </div>
@@ -320,7 +385,7 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
   </div>
 </section>
 
-<section class="camp" id="camping">
+<section class="camp wavy" id="camping">
   <div class="wrap grid">
     <div>
       <div class="sec-head" style="margin-bottom: 20px">
@@ -336,27 +401,23 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
       <div class="tarif"><b>5 000 FCFA</b><span>par personne et par nuit</span></div>
       <a class="btn btn-cta" href="https://wa.me/22890325373?text=Bonjour%2C%20je%20souhaite%20une%20place%20de%20camping.%20Dates%20%3A%20" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg>Réserver sur WhatsApp</a>
     </div>
-    <div class="pic"><img src="img/court.jpg" alt="Espace ouvert entouré de cocotiers et de verdure, près de la plage"></div>
+    <div class="pic print"><img data-lb src="img/court.jpg" alt="Espace ouvert entouré de cocotiers et de verdure, près de la plage"></div>
   </div>
 </section>
 
-<section id="galerie">
+<section id="galerie" class="wavy">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">Galerie</p>
       <h2>Un aperçu de la plage</h2>
     </div>
-    <div class="gallery">
-      <figure><img src="img/allee.jpg" alt="Plage bordée de cocotiers et de paillotes"></figure>
-      <figure><img src="img/walk.jpg" alt="Allée couverte en paillote face à la mer"></figure>
-      <figure><img src="img/beach.jpg" alt="Plage de sable doré et océan"></figure>
-      <figure><img src="img/palms.jpg" alt="Cocotiers et paillote près de l'entrée de la plage"></figure>
-      <figure><img src="img/mosaic.jpg" alt="Paillotes et chemin carrelé sous les cocotiers"></figure>
-      <figure><img src="img/whiteb.jpg" alt="Bâtiment blanc des chambres avec terrasse"></figure>
-      <figure><img src="img/turq.jpg" alt="Chambre aux murs turquoise"></figure>
-      <figure><img src="img/bamb.jpg" alt="Paillote en bambou entourée de verdure"></figure>
-      <figure><img src="img/heart.jpg" alt="Chambre avec lit en bois et fenêtre verte"></figure>
-      <figure><img src="img/redw.jpg" alt="Paillote aux murs rouges et blancs sous les palmiers"></figure>
+    <div class="mosaic" id="mosaic">
+      <button class="tile" type="button"><img data-lb src="img/allee.jpg" alt="Plage bordée de cocotiers et de paillotes"></button>
+      <button class="tile" type="button"><img data-lb src="img/mosaic.jpg" alt="Paillotes et chemin carrelé sous les cocotiers"></button>
+      <button class="tile" type="button"><img data-lb src="img/beach.jpg" alt="Plage de sable doré et océan"></button>
+      <button class="tile" type="button"><img data-lb src="img/whiteb.jpg" alt="Bâtiment blanc des chambres avec terrasse"></button>
+      <button class="tile" type="button"><img data-lb src="img/turq.jpg" alt="Chambre aux murs turquoise"></button>
+      <button class="tile more" id="moretile" type="button" aria-label="Voir toutes les photos"><img data-lb src="img/bamb.jpg" alt="Paillote en bambou entourée de verdure"></button>
     </div>
   </div>
 </section>
@@ -364,27 +425,22 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
 
 <footer>
   <div class="wrap">
-    <div class="cols">
-      <div class="brand">
-        <b>Cocobeach Avépozo<br>Chez Antoine</b>
-        <span>Restaurant, chambres et camping au bord de l'océan, à Baguida.</span>
-      </div>
+    <div class="foot">
       <div>
-        <h4>Nous trouver</h4>
-        <ul class="list">
-          <li><svg class="ico"><use href="#i-pin"/></svg><span><strong>Von, en face de la Pharmacie Avépozo</strong><small>Avépozo, Baguida, Lomé, Togo</small></span></li>
-        </ul>
+        <p class="fname">Cocobeach Avépozo</p>
+        <p class="fsub">Chez Antoine</p>
+        <div class="where2">
+          <svg class="ico"><use href="#i-pin"/></svg>
+          <div><b>Von, en face de la Pharmacie Avépozo</b><small>Avépozo, Baguida, Lomé, Togo</small></div>
+        </div>
       </div>
-      <div>
-        <h4>Contact</h4>
-        <ul class="list">
-          <li><svg class="ico"><use href="#i-chat"/></svg><span><a class="lnk" href="https://wa.me/22890325373" target="_blank" rel="noopener"><strong class="num">+228 90 32 53 73</strong></a><small>WhatsApp, réservations</small></span></li>
-          <li><svg class="ico"><use href="#i-phone"/></svg><span><a class="lnk" href="tel:+22870458038"><strong class="num">+228 70 45 80 38</strong></a><small>Appels uniquement</small></span></li>
-          <li><svg class="ico"><use href="#i-mail"/></svg><span><a class="lnk" href="mailto:cocobeach.avepozo@gmail.com"><strong class="mail">cocobeach.avepozo@gmail.com</strong></a><small>E-mail</small></span></li>
-        </ul>
+      <div class="pills">
+        <a class="pill wa" href="https://wa.me/22890325373" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg><span>+228 90 32 53 73</span></a>
+        <a class="pill" href="tel:+22870458038"><svg class="ico"><use href="#i-phone"/></svg><span>+228 70 45 80 38</span></a>
+        <a class="pill mail" href="mailto:cocobeach.avepozo@gmail.com"><svg class="ico"><use href="#i-mail"/></svg><span>cocobeach.avepozo@gmail.com</span></a>
       </div>
     </div>
-    <div class="legal"><span>© 2026 Cocobeach Avépozo · Chez Antoine</span><span>Lomé, Togo</span></div>
+    <div class="legal"><span>© 2026 Cocobeach Avépozo · Chez Antoine</span><span>WhatsApp pour réserver · appels au 70 45 80 38</span></div>
   </div>
 </footer>
 
@@ -397,24 +453,94 @@ footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(
 
 <script>
 (function () {
-  var imgs = Array.prototype.slice.call(document.querySelectorAll('.dish img, .room .pic > img, .minis img, .camp .pic img, .gallery img'));
-  var lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), cur = 0;
-  function show(i) { cur = (i + imgs.length) % imgs.length; lbi.src = imgs[cur].src; lbi.alt = imgs[cur].alt; }
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Menu mobile */
+  var burger = $('burger'), nav = $('nav');
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.querySelector('use').setAttribute('href', open ? '#i-close' : '#i-menu');
+  }
+  burger.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+  Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  /* Lien de la section en cours */
+  var links = {};
+  Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && links[e.target.id]) {
+          Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === e.target.id); });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(links).forEach(function (k) { var s = $(k); if (s) io.observe(s); });
+  }
+
+  /* Plats qui défilent */
+  var track = $('track'), slides = track.querySelectorAll('.dish'), dots = $('dots'), prev = $('prev'), next = $('next');
+  Array.prototype.forEach.call(slides, function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', 'Plat ' + (i + 1));
+    b.addEventListener('click', function () { track.scrollTo({ left: i * step(), behavior: 'smooth' }); });
+    dots.appendChild(b);
+  });
+  function step() { return slides[0].getBoundingClientRect().width + 16; }
+  function sync() {
+    var max = track.scrollWidth - track.clientWidth;
+    var idx = Math.round(track.scrollLeft / step());
+    if (max > 4 && track.scrollLeft >= max - 4) idx = slides.length - 1;
+    Array.prototype.forEach.call(dots.children, function (d, i) { d.classList.toggle('on', i === idx); });
+    prev.disabled = track.scrollLeft <= 4;
+    next.disabled = track.scrollLeft >= max - 4;
+  }
+  prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  track.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync);
+  sync();
+
+  /* Visionneuse : photos de la page, puis photos supplémentaires de la galerie */
+  var extra = [
+    ['img/walk.jpg', 'Allée couverte en paillote face à la mer'],
+    ['img/palms.jpg', 'Cocotiers et paillote près de l\'entrée de la plage'],
+    ['img/heart.jpg', 'Chambre avec lit en bois et fenêtre verte'],
+    ['img/redw.jpg', 'Paillote aux murs rouges et blancs sous les palmiers']
+  ];
+  var list = [];
+  var imgs = document.querySelectorAll('img[data-lb]');
+  Array.prototype.forEach.call(imgs, function (im, i) {
+    im.setAttribute('data-i', i);
+    list.push([im.getAttribute('src'), im.alt]);
+  });
+  var firstExtra = list.length;
+  extra.forEach(function (e) { list.push(e); });
+  var more = $('moretile');
+  more.setAttribute('data-more', '+' + (extra.length + 1) + ' photos');
+
+  var lb = $('lb'), lbi = $('lbi'), cur = 0;
+  function show(i) { cur = (i + list.length) % list.length; lbi.src = list[cur][0]; lbi.alt = list[cur][1]; }
   function open(i) { show(i); lb.hidden = false; document.body.style.overflow = 'hidden'; }
   function close() { lb.hidden = true; document.body.style.overflow = ''; }
-  imgs.forEach(function (im, i) { im.addEventListener('click', function () { open(i); }); });
-  document.getElementById('lbx').addEventListener('click', close);
-  document.getElementById('lbp').addEventListener('click', function () { show(cur - 1); });
-  document.getElementById('lbn').addEventListener('click', function () { show(cur + 1); });
+  Array.prototype.forEach.call(imgs, function (im) {
+    var target = im.closest('.tile') || im;
+    target.addEventListener('click', function () {
+      open(target === more ? firstExtra : parseInt(im.getAttribute('data-i'), 10));
+    });
+  });
+  $('lbx').addEventListener('click', close);
+  $('lbp').addEventListener('click', function () { show(cur - 1); });
+  $('lbn').addEventListener('click', function () { show(cur + 1); });
   lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
   document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { if (!lb.hidden) close(); setMenu(false); return; }
     if (lb.hidden) return;
-    if (e.key === 'Escape') close();
     if (e.key === 'ArrowLeft') show(cur - 1);
     if (e.key === 'ArrowRight') show(cur + 1);
   });
 })();
 </script>
-
 </body>
 </html>
